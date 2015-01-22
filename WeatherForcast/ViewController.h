@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+@interface ViewController : UIViewController<CLLocationManagerDelegate>
 
-@interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UITextField *place;
+- (IBAction)searchWeatherButton:(id)sender;
+
 
 @end
