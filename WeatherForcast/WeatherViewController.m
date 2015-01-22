@@ -11,9 +11,8 @@
 #import "ViewController.h"
 #import "Weather.h"
 #import "WeatherDetailViewController.h"
-const double ZERO_CELSIUS_IN_KELVIN = 273.15;
-double degreesKelvin;
-double k;
+//273.15;
+
 
 @interface WeatherViewController ()
 
@@ -26,12 +25,6 @@ double k;
 {
      [super viewDidLoad];
      self.cityName.text=self.nameofCity;
-    
-    Weather *weatherReport=[[Weather alloc]init];
-    
-    weatherReport=[self.tempDetail objectAtIndex:0];
-    
-    NSLog(@"%@",weatherReport.weatherDescription);
     
     
 }
@@ -51,10 +44,31 @@ double k;
     if (cell == nil) {
         cell = [[WeatherListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:weatherListIdentifier];
     }
-   
     
     
+    if(self.selectType.selectedSegmentIndex==0){
+    Weather *weatherReport=[[Weather alloc]init];
     
+    weatherReport=[self.tempDetail objectAtIndex:indexPath.row];
+    
+    cell.weatherCondition.text= weatherReport.weatherDescription ;
+    
+    cell.daytype.text= weatherReport.main;
+    
+    cell.maxTemp.text= [NSString stringWithFormat:@"%d", [weatherReport.maxTemp intValue]];
+    }else{
+    
+        Weather *weatherReport=[[Weather alloc]init];
+        
+        weatherReport=[self.tempDetail objectAtIndex:indexPath.row];
+        
+        cell.weatherCondition.text= weatherReport.weatherDescription ;
+        
+        cell.daytype.text= weatherReport.main;
+        
+        cell.maxTemp.text= [NSString stringWithFormat:@"%d", [weatherReport.maxTemp intValue]-273];
+    
+    }
         return cell;
 }
 
@@ -82,16 +96,13 @@ double k;
     {
         case 0:
             
-            
-             k = degreesKelvin - ZERO_CELSIUS_IN_KELVIN;
+            [self.weatherListTable reloadData];
             
             break;
         
         case 1:
             
-             k = degreesKelvin;
-            
-
+            [self.weatherListTable reloadData];
             break;
         
         default:

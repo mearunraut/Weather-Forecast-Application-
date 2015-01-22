@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateofWeather;
 @property (weak, nonatomic) IBOutlet UILabel *daytype;
 @property (weak, nonatomic) IBOutlet UILabel *weatherCondition;
+@property (weak, nonatomic) IBOutlet UILabel *maxTemp;
 
 
 @end

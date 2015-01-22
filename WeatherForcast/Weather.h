@@ -11,7 +11,7 @@
 @interface Weather : NSObject
 
 @property NSString *weatherDescription;
-@property NSString *maxTemp;
+@property NSNumber *maxTemp;
 @property NSString *main;
 
 

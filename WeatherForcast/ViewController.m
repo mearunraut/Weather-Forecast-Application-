@@ -113,9 +113,10 @@
             self.temp=[self.list valueForKey:@"temp"];
             
             
-            day.weatherDescription=[self.weather valueForKey:@"description"];
-            day.main=   [self.weather valueForKey:@"main"];
-            day.maxTemp=  [[self.temp valueForKey:@"max"] objectAtIndex:i];
+            day.weatherDescription=[[self.weather valueForKey:@"description"] objectAtIndex:0];
+            day.main=   [[self.weather valueForKey:@"main"]objectAtIndex:0];
+            
+            day.maxTemp = [[self.temp valueForKey:@"max"] objectAtIndex:i];
           
             [self.daysArray addObject:day];
             
