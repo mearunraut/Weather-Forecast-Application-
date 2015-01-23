@@ -117,7 +117,11 @@
             day.main=   [[self.weather valueForKey:@"main"]objectAtIndex:0];
             
             day.maxTemp = [[self.temp valueForKey:@"max"] objectAtIndex:i];
-          
+            day.cloudiNess=[[self.list valueForKey:@"clouds"]objectAtIndex:0];
+            day.pressureLabel=[[self.list valueForKey:@"pressure"]objectAtIndex:i];
+            day.humidityLabel=[[self.list valueForKey:@"humidity"]objectAtIndex:i];
+            day.windLabel=[[self.list valueForKey:@"speed"]objectAtIndex:i];
+            
             [self.daysArray addObject:day];
             
         }

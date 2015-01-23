@@ -14,5 +14,11 @@
 @property NSNumber *maxTemp;
 @property NSString *main;
 
+@property NSNumber *windLabel;
+@property NSString *cloudiNess;
+@property NSNumber *pressureLabel;
+@property NSNumber *humidityLabel;
+@property NSString *sunriseTime;
+
 
 @end

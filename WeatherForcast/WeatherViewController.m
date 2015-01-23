@@ -11,9 +11,7 @@
 #import "ViewController.h"
 #import "Weather.h"
 #import "WeatherDetailViewController.h"
-//273.15;
-
-
+extern BOOL isKelvin;
 @interface WeatherViewController ()
 
 @end
@@ -52,20 +50,20 @@
     weatherReport=[self.tempDetail objectAtIndex:indexPath.row];
     
     cell.weatherCondition.text= weatherReport.weatherDescription ;
-    
+    cell.dateofWeather.text=[NSString stringWithFormat:@"%ld", (long)indexPath.row+1 ];
     cell.daytype.text= weatherReport.main;
-    
+    isKelvin=YES;
     cell.maxTemp.text= [NSString stringWithFormat:@"%d", [weatherReport.maxTemp intValue]];
     }else{
     
         Weather *weatherReport=[[Weather alloc]init];
         
         weatherReport=[self.tempDetail objectAtIndex:indexPath.row];
-        
+        cell.dateofWeather.text=[NSString stringWithFormat:@"%ld", (long)indexPath.row+1 ];
         cell.weatherCondition.text= weatherReport.weatherDescription ;
         
         cell.daytype.text= weatherReport.main;
-        
+        isKelvin=NO;
         cell.maxTemp.text= [NSString stringWithFormat:@"%d", [weatherReport.maxTemp intValue]-273];
     
     }
@@ -74,12 +72,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     WeatherDetailViewController *destinationViewController=[self.storyboard instantiateViewControllerWithIdentifier:@"WeatherDetailViewController"];
     destinationViewController.index= (int)indexPath.row;
+    destinationViewController.weatherDetail=self.tempDetail;
+    destinationViewController.nameofCity=self.cityName.text;
     destinationViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:destinationViewController animated:YES completion:nil];
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
 
